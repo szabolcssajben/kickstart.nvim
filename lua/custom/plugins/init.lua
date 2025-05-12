@@ -2,4 +2,13 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-return {}
+return {
+
+  -- Autoformat Go files on save
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    pattern = '*.go',
+    callback = function()
+      vim.lsp.buf.format { async = false }
+    end,
+  }),
+}
